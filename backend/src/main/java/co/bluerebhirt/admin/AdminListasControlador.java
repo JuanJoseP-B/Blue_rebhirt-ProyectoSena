@@ -38,7 +38,13 @@ public class AdminListasControlador {
     @GetMapping("/admin/mediciones")
     public String mediciones(Model modelo) {
         modelo.addAttribute("titulo","Mediciones recientes");
-        modelo.addAttribute("filas",jdbc.queryForList("SELECT c.nombre AS principal, CONCAT(DATE_FORMAT(m.medido_en, '%d/%m/%Y'), ' · pH ',m.ph) AS detalle, m.estado FROM mediciones m JOIN cultivos c ON c.id=m.cultivo_id ORDER BY m.medido_en DESC,m.id DESC LIMIT 30"));
+        var filas = jdbc.queryForList("SELECT c.nombre AS principal, m.medido_en, m.ph, m.estado FROM mediciones m JOIN cultivos c ON c.id=m.cultivo_id ORDER BY m.medido_en DESC,m.id DESC LIMIT 30");
+        var formato = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for (var fila : filas) {
+            var fecha = ((java.sql.Timestamp) fila.get("medido_en")).toLocalDateTime();
+            fila.put("detalle", fecha.format(formato) + " · pH " + fila.get("ph"));
+        }
+        modelo.addAttribute("filas", filas);
         return "admin-lista";
     }
 }

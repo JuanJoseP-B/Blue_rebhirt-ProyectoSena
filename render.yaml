@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: blue-rebhirt
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USUARIO
+        sync: false
+      - key: DB_CLAVE
+        sync: false
+      - key: DATOS_DEMO
+        value: "false"
+      - key: APP_ADMIN_INICIAL_CORREO
+        sync: false
+      - key: APP_ADMIN_INICIAL_CLAVE
+        sync: false

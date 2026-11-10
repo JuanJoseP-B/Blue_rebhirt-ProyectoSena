@@ -12,20 +12,13 @@
 </head>
 <body>
 <div class="pagina">
-  <nav class="menu" aria-label="Principal">
-    <a class="menu__marca" href="/"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
-    <ul class="menu__lista">
-      <li><a class="menu__enlace" href="/">Inicio</a></li>
-      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
-    </ul>
-    <div class="menu__acciones">
-      <a class="btn btn--discreto" href="/registro">Crear cuenta</a>
-    </div>
-  </nav>
+  <nav th:replace="~{fragments/menu :: menu('acceso', false)}"></nav>
 
   <main class="centrado">
     <form class="acceso" aria-labelledby="e-titulo" method="post" th:action="@{/entrar}">
+      <input type="hidden" name="rol" th:value="${rolElegido}">
       <h1 class="titulo-lg" id="e-titulo"><em class="enfasis">Entrar</em></h1>
+      <p class="apoyo" th:text="${rolElegido == 'administrador' ? 'Administrador' : 'Agricultor'}"></p>
       <div class="acceso__form">
         <div class="campo">
           <label class="campo__etiqueta" for="e-correo">Correo</label>
@@ -37,7 +30,7 @@
         </div>
       </div>
       <p class="campo__error" th:if="${param.error}">Correo o contraseña incorrectos.</p><button class="btn btn--primario btn--completo" type="submit">Entrar</button>
-      <div class="acceso__alterno"><a class="btn btn--discreto" href="/registro">Crear cuenta</a></div>
+      <div class="acceso__alterno"><a class="btn btn--discreto" href="/entrar">Cambiar de rol</a> <a class="btn btn--discreto" href="/registro" th:if="${rolElegido == 'agricultor'}">Crear cuenta</a></div>
     </form>
   </main>
 </div>

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="|Elige tu acceso · ${nombreApp}|">Elige tu acceso</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/componentes.css"><link rel="stylesheet" href="/css/pantallas.css"><style>body{margin:0}</style></head>
+<body><div class="pagina"><nav th:replace="~{fragments/menu :: menu('acceso', false)}"></nav>
+<main class="centrado"><section class="acceso"><h1 class="titulo-lg">Elige tu <em class="enfasis">acceso</em></h1>
+<p class="cuerpo">Selecciona el tipo de cuenta con la que quieres entrar.</p>
+<div class="acceso__form"><a class="btn btn--secundario btn--completo" href="/entrar?rol=agricultor">Agricultor</a><a class="btn btn--secundario btn--completo" href="/entrar?rol=administrador">Administrador</a></div>
+<div class="acceso__alterno"><a class="btn btn--discreto" href="/registro">Crear cuenta</a></div></section></main></div></body></html>

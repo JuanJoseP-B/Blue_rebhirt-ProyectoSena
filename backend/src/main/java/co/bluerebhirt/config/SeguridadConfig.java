@@ -35,9 +35,25 @@ public class SeguridadConfig {
                 .anyRequest().authenticated())
                 .formLogin(formulario -> formulario.loginPage("/entrar").successHandler((peticion, respuesta, autenticacion) -> {
                     boolean admin = autenticacion.getAuthorities().stream().anyMatch(rol -> rol.getAuthority().equals("ROLE_ADMINISTRADOR"));
+                    String elegido = peticion.getParameter("rol");
+                    if (!(admin ? "administrador" : "agricultor").equals(elegido)) {
+                        peticion.logout();
+                        respuesta.sendRedirect("/entrar?rol=" + ("administrador".equals(elegido) ? "administrador" : "agricultor") + "&error");
+                        return;
+                    }
                     respuesta.sendRedirect(admin ? "/admin" : "/inicio");
+                }).failureHandler((peticion, respuesta, error) -> {
+                    String rol = "administrador".equals(peticion.getParameter("rol")) ? "administrador" : "agricultor";
+                    respuesta.sendRedirect("/entrar?rol=" + rol + "&error");
                 }).permitAll())
                 .logout(salida -> salida.logoutUrl("/salir").logoutSuccessUrl("/"))
+                .exceptionHandling(errores -> errores.accessDeniedHandler((peticion, respuesta, error) -> {
+                    if (peticion.getRequestURI().startsWith(peticion.getContextPath() + "/admin")) {
+                        respuesta.sendRedirect(peticion.getContextPath() + "/inicio");
+                    } else {
+                        respuesta.sendError(403);
+                    }
+                }))
                 .build();
     }
 }

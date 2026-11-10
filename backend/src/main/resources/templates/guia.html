@@ -12,19 +12,7 @@
 </head>
 <body>
 <div class="pagina">
-  <nav class="menu" aria-label="Principal">
-    <a class="menu__marca" href="/"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
-    <ul class="menu__lista">
-      <li><a class="menu__enlace" href="/">Inicio</a></li>
-      <li sec:authorize="hasRole('AGRICULTOR')"><a class="menu__enlace" href="/cultivos">Mis cultivos</a></li>
-      <li sec:authorize="hasRole('AGRICULTOR')"><a class="menu__enlace" href="/historial">Historial</a></li>
-      <li><a class="menu__enlace" href="/guia" aria-current="page">Guía de abonos</a></li>
-    </ul>
-    <div class="menu__acciones">
-      <a class="btn btn--discreto" href="/entrar" sec:authorize="isAnonymous()">Entrar</a><form method="post" th:action="@{/salir}" sec:authorize="isAuthenticated()"><button class="btn btn--discreto" type="submit">Salir</button></form>
-      <a class="btn btn--primario" href="/mediciones/nueva" sec:authorize="hasRole('AGRICULTOR')">Nueva medición</a>
-    </div>
-  </nav>
+  <nav th:replace="~{fragments/menu :: menu('guia', true)}"></nav>
 
   <main class="contenedor">
     <div class="panel">

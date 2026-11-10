@@ -3,6 +3,7 @@ package co.bluerebhirt.cultivo;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Map;
+import co.bluerebhirt.Fechas;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,12 @@ public class CultivoControlador {
     private final JdbcTemplate jdbc;
     public CultivoControlador(JdbcTemplate jdbc) { this.jdbc = jdbc; }
     private void cargar(Principal usuario, Model modelo) {
-        modelo.addAttribute("cultivos", jdbc.queryForList("SELECT c.nombre, c.lugar, c.fecha_siembra, (SELECT m.ph FROM mediciones m WHERE m.cultivo_id=c.id ORDER BY m.medido_en DESC,m.id DESC LIMIT 1) AS ultimo_ph, (SELECT m.estado FROM mediciones m WHERE m.cultivo_id=c.id ORDER BY m.medido_en DESC,m.id DESC LIMIT 1) AS ultimo_estado FROM cultivos c JOIN usuarios u ON u.id = c.usuario_id WHERE u.correo = ? ORDER BY c.creado_en DESC", usuario.getName()));
+        var cultivos = jdbc.queryForList("SELECT c.nombre, c.lugar, c.fecha_siembra, (SELECT m.ph FROM mediciones m WHERE m.cultivo_id=c.id ORDER BY m.medido_en DESC,m.id DESC LIMIT 1) AS ultimo_ph, (SELECT m.estado FROM mediciones m WHERE m.cultivo_id=c.id ORDER BY m.medido_en DESC,m.id DESC LIMIT 1) AS ultimo_estado, (SELECT m.medido_en FROM mediciones m WHERE m.cultivo_id=c.id ORDER BY m.medido_en DESC,m.id DESC LIMIT 1) AS ultima_fecha FROM cultivos c JOIN usuarios u ON u.id = c.usuario_id WHERE u.correo = ? ORDER BY c.creado_en DESC", usuario.getName());
+        for (var cultivo : cultivos) {
+            if (cultivo.get("fecha_siembra") != null) cultivo.put("siembra_texto", Fechas.fecha(((java.sql.Date) cultivo.get("fecha_siembra")).toLocalDate()));
+            if (cultivo.get("ultima_fecha") != null) cultivo.put("tiempo_ultima", Fechas.transcurrido(((java.sql.Timestamp) cultivo.get("ultima_fecha")).toLocalDateTime().toLocalDate()));
+        }
+        modelo.addAttribute("cultivos", cultivos);
     }
     @GetMapping("/cultivos")
     public String listar(Principal usuario, Model modelo) { cargar(usuario, modelo); return "cultivos"; }

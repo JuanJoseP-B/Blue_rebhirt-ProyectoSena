@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav class="menu" aria-label="Principal" th:fragment="menu(actual, mostrarMedicion)">
+  <a class="menu__marca" th:href="${#authorization.expression('hasRole(''ADMINISTRADOR'')')} ? @{/admin} : (${#authorization.expression('hasRole(''AGRICULTOR'')')} ? @{/inicio} : @{/})"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
+  <ul class="menu__lista" sec:authorize="hasRole('ADMINISTRADOR')">
+    <li><a class="menu__enlace" href="/admin" th:attr="aria-current=${actual == 'admin' ? 'page' : null}">Panel</a></li>
+    <li><a class="menu__enlace" href="/admin/usuarios" th:attr="aria-current=${actual == 'usuarios' ? 'page' : null}">Usuarios</a></li>
+    <li><a class="menu__enlace" href="/admin/cultivos" th:attr="aria-current=${actual == 'admin-cultivos' ? 'page' : null}">Cultivos</a></li>
+    <li><a class="menu__enlace" href="/admin">Rangos</a></li>
+  </ul>
+  <ul class="menu__lista" sec:authorize="hasRole('AGRICULTOR')">
+    <li><a class="menu__enlace" href="/inicio" th:attr="aria-current=${actual == 'inicio' ? 'page' : null}">Inicio</a></li>
+    <li><a class="menu__enlace" href="/cultivos" th:attr="aria-current=${actual == 'cultivos' ? 'page' : null}">Mis cultivos</a></li>
+    <li><a class="menu__enlace" href="/historial" th:attr="aria-current=${actual == 'historial' ? 'page' : null}">Historial</a></li>
+    <li><a class="menu__enlace" href="/guia" th:attr="aria-current=${actual == 'guia' ? 'page' : null}">Guía de abonos</a></li>
+  </ul>
+  <ul class="menu__lista" sec:authorize="isAnonymous()">
+    <li><a class="menu__enlace" href="/" th:attr="aria-current=${actual == 'publico' ? 'page' : null}">Inicio</a></li>
+    <li><a class="menu__enlace" href="/guia" th:attr="aria-current=${actual == 'guia' ? 'page' : null}">Guía de abonos</a></li>
+  </ul>
+  <div class="menu__acciones">
+    <a class="btn btn--discreto" href="/registro" sec:authorize="isAnonymous()" th:if="${actual != 'registro' and actual != 'publico'}">Crear cuenta</a>
+    <a class="btn btn--discreto" href="/entrar" sec:authorize="isAnonymous()" th:if="${actual == 'registro'}">Entrar</a>
+    <a class="btn btn--primario" href="/entrar" sec:authorize="isAnonymous()" th:if="${actual == 'publico'}">Entrar</a>
+    <form method="post" th:action="@{/salir}" sec:authorize="isAuthenticated()"><button class="btn btn--discreto" type="submit">Salir</button></form>
+    <a class="btn btn--primario" href="/mediciones/nueva" sec:authorize="hasRole('AGRICULTOR')" th:if="${mostrarMedicion and menuTieneCultivos}">Nueva medición</a>
+  </div>
+</nav>
+</body></html>

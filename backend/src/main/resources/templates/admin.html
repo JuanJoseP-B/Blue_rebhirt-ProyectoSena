@@ -12,18 +12,7 @@
 </head>
 <body>
 <div class="pagina">
-  <nav class="menu" aria-label="Administración">
-    <a class="menu__marca" href="/admin"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
-    <ul class="menu__lista">
-      <li><a class="menu__enlace" href="/admin" aria-current="page">Panel</a></li>
-      <li><a class="menu__enlace" href="/admin/usuarios">Usuarios</a></li>
-      <li><a class="menu__enlace" href="/admin/cultivos">Cultivos</a></li>
-      <li><a class="menu__enlace" href="/admin">Rangos</a></li>
-    </ul>
-    <div class="menu__acciones">
-      <form method="post" th:action="@{/salir}"><button class="btn btn--discreto" type="submit">Salir</button></form>
-    </div>
-  </nav>
+  <nav th:replace="~{fragments/menu :: menu('admin', false)}"></nav>
 
   <main class="contenedor">
     <div class="panel panel--ancho">

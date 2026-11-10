@@ -3,9 +3,9 @@ package co.bluerebhirt.medicion;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -27,10 +27,27 @@ public class MedicionControlador {
     }
     @GetMapping("/mediciones/nueva")
     public String nueva(Principal usuario, Model modelo) {
-        cargarCultivos(usuario, modelo); modelo.addAttribute("datos", Map.of()); return "medicion";
+        cargarCultivos(usuario, modelo); modelo.addAttribute("datos", Map.of()); modelo.addAttribute("errores", Map.of()); return "medicion";
     }
     @PostMapping("/mediciones")
     public String guardar(@RequestParam Map<String, String> datos, Principal usuario, Model modelo) {
+        Map<String, String> errores = new LinkedHashMap<>();
+        try {
+            long cultivo = Long.parseLong(datos.getOrDefault("cultivo", ""));
+            Integer propio = jdbc.queryForObject("SELECT COUNT(*) FROM cultivos c JOIN usuarios u ON u.id = c.usuario_id WHERE c.id = ? AND u.correo = ?", Integer.class, cultivo, usuario.getName());
+            if (propio == null || propio == 0) errores.put("cultivo", "Selecciona uno de tus cultivos.");
+        } catch (NumberFormatException invalido) { errores.put("cultivo", "Selecciona uno de tus cultivos."); }
+        validarNumero(datos, errores, "ph", "0", "14", "Escribe un pH entre 0 y 14.");
+        validarNumero(datos, errores, "nivel", "0", "500", "Escribe un valor entre 0 y 500.");
+        validarNumero(datos, errores, "humedad", "0", "100", "Escribe un valor entre 0 y 100.");
+        validarNumero(datos, errores, "temperatura", "-5", "60", "Escribe un valor entre -5 y 60.");
+        validarOpcion(datos, errores, "hojas", List.of("verdes", "amarillas", "manchas"));
+        validarOpcion(datos, errores, "abono", List.of("menos_2_semanas", "2_a_4_semanas", "mas_1_mes", "nunca"));
+        validarOpcion(datos, errores, "lluvia", List.of("0", "1"));
+        if (!errores.isEmpty()) {
+            modelo.addAttribute("errores", errores); modelo.addAttribute("datos", datos);
+            cargarCultivos(usuario, modelo); return "medicion";
+        }
         try {
             long cultivo = Long.parseLong(datos.getOrDefault("cultivo", ""));
             Integer propio = jdbc.queryForObject("SELECT COUNT(*) FROM cultivos c JOIN usuarios u ON u.id = c.usuario_id WHERE c.id = ? AND u.correo = ?", Integer.class, cultivo, usuario.getName());
@@ -45,7 +62,7 @@ public class MedicionControlador {
             RangoPh rango = calculo.calcular(ph);
             var llave = new GeneratedKeyHolder();
             jdbc.update(conexion -> {
-                var sentencia = conexion.prepareStatement("INSERT INTO mediciones (cultivo_id, ph, nivel_agua_cm, humedad_pct, temperatura_c, hojas, ultimo_abono, llovio_3_dias, rango_id, estado, recomendacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                var sentencia = conexion.prepareStatement("INSERT INTO mediciones (cultivo_id, ph, nivel_agua_cm, humedad_pct, temperatura_c, hojas, ultimo_abono, llovio_3_dias, rango_id, estado, recomendacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", new String[] {"id"});
                 sentencia.setLong(1, cultivo); sentencia.setBigDecimal(2, ph); sentencia.setBigDecimal(3, nivel); sentencia.setBigDecimal(4, humedad); sentencia.setBigDecimal(5, temperatura);
                 sentencia.setString(6, hojas); sentencia.setString(7, abono); sentencia.setBoolean(8, lluvia.equals("1")); sentencia.setInt(9, rango.id()); sentencia.setString(10, rango.estado()); sentencia.setString(11, rango.recomendacion());
                 return sentencia;
@@ -53,8 +70,15 @@ public class MedicionControlador {
             return "redirect:/mediciones/" + llave.getKey().longValue();
         } catch (IllegalArgumentException error) {
             modelo.addAttribute("error", error instanceof NumberFormatException ? "Revisa los valores numéricos y selecciona tu cultivo." : error.getMessage());
-            modelo.addAttribute("datos", datos); cargarCultivos(usuario, modelo); return "medicion";
+            modelo.addAttribute("datos", datos); modelo.addAttribute("errores", Map.of()); cargarCultivos(usuario, modelo); return "medicion";
         }
+    }
+    private void validarNumero(Map<String, String> datos, Map<String, String> errores, String campo, String minimo, String maximo, String mensaje) {
+        try { numero(datos, campo, minimo, maximo); }
+        catch (IllegalArgumentException invalido) { errores.put(campo, mensaje); }
+    }
+    private void validarOpcion(Map<String, String> datos, Map<String, String> errores, String campo, List<String> permitidos) {
+        if (!permitidos.contains(datos.getOrDefault(campo, ""))) errores.put(campo, "Selecciona una opción válida.");
     }
     private BigDecimal numero(Map<String, String> datos, String campo, String minimo, String maximo) {
         BigDecimal valor = new BigDecimal(datos.getOrDefault(campo, ""));

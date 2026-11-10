@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthControlador {
@@ -19,7 +20,11 @@ public class AuthControlador {
     public AuthControlador(JdbcTemplate jdbc, PasswordEncoder encoder) { this.jdbc = jdbc; this.encoder = encoder; }
 
     @GetMapping("/entrar")
-    public String entrar() { return "entrar"; }
+    public String entrar(@RequestParam(required = false) String rol, Model modelo) {
+        if (!"agricultor".equals(rol) && !"administrador".equals(rol)) return "elegir-rol";
+        modelo.addAttribute("rolElegido", rol);
+        return "entrar";
+    }
 
     @GetMapping("/registro")
     public String registro(Model modelo) { modelo.addAttribute("registroForm", new RegistroForm()); return "registro"; }

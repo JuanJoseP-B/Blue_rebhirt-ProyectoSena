@@ -12,18 +12,7 @@
 </head>
 <body>
 <div class="pagina">
-  <nav class="menu" aria-label="Principal">
-    <a class="menu__marca" href="/inicio"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
-    <ul class="menu__lista">
-      <li><a class="menu__enlace" href="/inicio">Inicio</a></li>
-      <li><a class="menu__enlace" href="/cultivos" aria-current="page">Mis cultivos</a></li>
-      <li><a class="menu__enlace" href="/historial">Historial</a></li>
-      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
-    </ul>
-    <div class="menu__acciones">
-      <form method="post" th:action="@{/salir}"><button class="btn btn--discreto" type="submit">Salir</button></form>
-    </div>
-  </nav>
+  <nav th:replace="~{fragments/menu :: menu('cultivos', false)}"></nav>
 
   <main class="contenedor">
     <div class="panel">
@@ -50,7 +39,7 @@
         </form>
       </section>
 
-      <section class="modulo modulo--apoyo" th:each="cultivo : ${cultivos}"><p class="modulo__etiqueta">Plátano</p><h2 class="titulo-md" th:text="${cultivo.nombre}">Cultivo</h2><p class="apoyo" th:if="${cultivo.lugar != null}" th:text="${cultivo.lugar}"></p><p class="apoyo" th:if="${cultivo.ultimo_ph == null}">Sin mediciones</p><p class="estado" th:if="${cultivo.ultimo_ph != null}" th:classappend="|estado--${cultivo.ultimo_estado}|"><i aria-hidden="true" th:text="${cultivo.ultimo_estado == 'ok' ? '✓' : (cultivo.ultimo_estado == 'aviso' ? '!' : '▲')}"></i><span th:text="|pH ${cultivo.ultimo_ph} · ${cultivo.ultimo_estado == 'ok' ? 'En rango' : (cultivo.ultimo_estado == 'aviso' ? 'Revisar' : 'Fuera de rango')}|"></span></p></section>
+      <section class="modulo modulo--apoyo" th:each="cultivo : ${cultivos}"><p class="modulo__etiqueta">Plátano</p><h2 class="titulo-md" th:text="${cultivo.nombre}">Cultivo</h2><p class="apoyo" th:if="${cultivo['siembra_texto'] != null}" th:text="|Plátano · sembrado el ${cultivo['siembra_texto']}|"></p><p class="apoyo" th:if="${cultivo.lugar != null}" th:text="${cultivo.lugar}"></p><p class="apoyo" th:if="${cultivo.ultimo_ph == null}">Sin mediciones</p><p class="estado" th:if="${cultivo.ultimo_ph != null}" th:classappend="|estado--${cultivo.ultimo_estado}|"><i aria-hidden="true" th:text="${cultivo.ultimo_estado == 'ok' ? '✓' : (cultivo.ultimo_estado == 'aviso' ? '!' : '▲')}"></i><span th:text="|pH ${cultivo.ultimo_ph} · ${cultivo.ultimo_estado == 'ok' ? 'En rango' : (cultivo.ultimo_estado == 'aviso' ? 'Revisar' : 'Fuera de rango')}|"></span></p><p class="apoyo" th:if="${cultivo.ultimo_ph != null}" th:text="|Última medición: ${cultivo['tiempo_ultima']}|"></p></section>
 
       <nav class="panel__enlaces" aria-label="Más opciones">
         <a class="modulo modulo--enlace" href="/historial">Ver historial</a>

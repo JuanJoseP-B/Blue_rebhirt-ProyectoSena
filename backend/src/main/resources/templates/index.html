@@ -12,16 +12,7 @@
 </head>
 <body>
 <div class="pagina">
-  <nav class="menu" aria-label="Principal">
-    <a class="menu__marca" href="/"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${@environment.getProperty('app.nombre')}">Blue Rebhirt</span></a>
-    <ul class="menu__lista">
-      <li><a class="menu__enlace" href="/" aria-current="page">Inicio</a></li>
-      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
-    </ul>
-    <div class="menu__acciones">
-      <a class="btn btn--primario" href="/entrar">Entrar</a>
-    </div>
-  </nav>
+  <nav th:replace="~{fragments/menu :: menu('publico', false)}"></nav>
 
   <main class="contenedor">
     <div class="panel">
