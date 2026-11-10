@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de abonos · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="panel.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="panel.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="cultivos.html">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="historial.html">Historial</a></li>
+      <li><a class="menu__enlace" href="guia.html" aria-current="page">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+      <a class="btn btn--primario" href="medicion.html">Nueva medición</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="g-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Según el pH del agua</p>
+          <h1 class="titulo-lg" id="g-titulo">Qué hacer con el <em class="enfasis">abono</em></h1>
+        </div>
+        <div class="modulo__formulario">
+          <div class="grupo">
+            <p class="estado estado--alerta"><i aria-hidden="true">▲</i> Ácido · menos de 5.5</p>
+            <p class="cuerpo">El agua tiene más acidez de la que el plátano necesita. Revisa el abono y vuelve a medir mañana.</p>
+          </div>
+          <div class="grupo">
+            <p class="estado estado--ok"><i aria-hidden="true">✓</i> Ideal · de 5.5 a 7.0</p>
+            <p class="cuerpo">El agua está bien para el plátano. Sigue con tu riego y tu abono normales.</p>
+          </div>
+          <div class="grupo">
+            <p class="estado estado--aviso"><i aria-hidden="true">!</i> Alcalino · más de 7.0</p>
+            <p class="cuerpo">El agua tiene más base de la que el plátano necesita. Revisa el abono y consulta con tu técnico si se mantiene.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="g-escala">
+        <p class="modulo__etiqueta">De 0 a 14</p>
+        <h2 class="titulo-md" id="g-escala">Escala del <em class="enfasis">pH</em></h2>
+        <div class="escala" role="img" aria-label="Escala del pH de 0 a 14: ácido hasta 5.5, ideal de 5.5 a 7.0, alcalino desde 7.0">
+          <div class="escala__area">
+            <div class="escala__barra">
+              <div class="escala__tramo--acido"></div>
+              <div class="escala__tramo--ideal"></div>
+              <div class="escala__tramo--alcalino"></div>
+            </div>
+          </div>
+          <div class="escala__numeros">
+            <span style="left: 0">0</span>
+            <span style="left: 39.29%">5.5</span>
+            <span style="left: 50%">7</span>
+            <span style="left: 100%">14</span>
+          </div>
+          <div class="escala__leyenda">
+            <span style="--_c: var(--arcilla)"><i></i>Ácido</span>
+            <span style="--_c: var(--hoja)"><i></i>Ideal</span>
+            <span style="--_c: var(--ocre)"><i></i>Alcalino</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="g-leer">
+        <p class="modulo__etiqueta">Para entender el número</p>
+        <h2 class="titulo-md" id="g-leer">Cómo leer el <em class="enfasis">pH</em></h2>
+        <ul class="lista">
+          <li><span>Menos de 7</span><strong>Ácido</strong></li>
+          <li><span>Igual a 7</span><strong>Neutro</strong></li>
+          <li><span>Más de 7</span><strong>Alcalino</strong></li>
+        </ul>
+        <p class="apoyo">El agua pura a 25 °C marca 7.</p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="panel.html">Volver al inicio</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

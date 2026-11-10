@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crear cuenta · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="index.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="index.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="entrar.html">Entrar</a>
+    </div>
+  </nav>
+
+  <main class="centrado">
+    <form class="acceso" aria-labelledby="r-titulo">
+      <h1 class="titulo-lg" id="r-titulo">Crear <em class="enfasis">cuenta</em></h1>
+      <div class="acceso__form">
+        <div class="campo">
+          <label class="campo__etiqueta" for="r-nombre">Nombre</label>
+          <input class="campo__input" id="r-nombre" type="text" autocomplete="name">
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="r-correo">Correo</label>
+          <input class="campo__input" id="r-correo" type="email" autocomplete="email">
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="r-clave">Contraseña</label>
+          <input class="campo__input" id="r-clave" type="password" autocomplete="new-password">
+          <p class="campo__ayuda">Mínimo 6 caracteres.</p>
+        </div>
+      </div>
+      <a class="btn btn--primario btn--completo" href="cultivos.html">Crear cuenta</a>
+      <div class="acceso__alterno"><a class="btn btn--discreto" href="entrar.html">Ya tengo cuenta</a></div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

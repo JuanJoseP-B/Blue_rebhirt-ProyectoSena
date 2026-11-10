@@ -1,0 +1,72 @@
+/* Estilos de pantalla de Blue Rebhirt. Todo sale de los tokens del design system. */
+.pagina { min-height: 100%; background: var(--fondo); color: var(--tinta); font-family: var(--font-text); }
+.contenedor { max-width: 1120px; margin: 0 auto; padding: var(--space-12) var(--space-6); display: flex; flex-direction: column; gap: var(--space-8); }
+.saludo { display: flex; flex-direction: column; gap: var(--space-1); }
+.saludo p { color: var(--tinta-suave); }
+.centrado { display: flex; justify-content: center; align-items: center; min-height: 640px; padding: var(--space-12) var(--space-6); }
+.pie { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-6) var(--space-12); font: 400 15px/22px var(--font-text); color: var(--tinta-suave); }
+.panel--ancho { grid-template-columns: 9fr 4fr; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.grupo { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.hero { position: relative; overflow: hidden; }
+.hero > * { position: relative; }
+.hero .decor { position: absolute; right: 0; bottom: 0; }
+.l-os { fill: var(--hoja-oscuro); }
+.l-cl { fill: var(--hoja-suave); opacity: .3; }
+
+.lista { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.lista li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--borde); font: 400 17px/26px var(--font-text); }
+.lista li:last-child { border-bottom: 0; }
+.lista strong { font-weight: 600; }
+
+.estado { display: inline-flex; align-items: center; gap: var(--space-2); font: 700 15px/22px var(--font-text); color: var(--tinta); }
+.estado i { display: grid; place-items: center; width: 22px; height: 22px; flex: none; border-radius: 50%; background: var(--_c); color: var(--sobre-color); font: 800 13px/1 var(--font-text); font-style: normal; }
+.estado--ok { --_c: var(--hoja); }
+.estado--aviso { --_c: var(--ocre); }
+.estado--alerta { --_c: var(--arcilla); }
+.estado--aviso i { color: var(--tinta); }
+
+.pasos { counter-reset: p; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+.pasos li { counter-increment: p; display: grid; grid-template-columns: 32px 1fr; gap: var(--space-3); align-items: start; }
+.pasos li::before { content: counter(p); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--hoja-suave); color: var(--hoja-oscuro); font: 800 16px/1 var(--font-display); }
+
+.grafica { width: 100%; height: auto; }
+.g-texto { fill: var(--tinta); font: 600 13px var(--font-text); }
+.g-banda { fill: var(--hoja-suave); }
+.g-linea { stroke: var(--hoja-oscuro); fill: none; stroke-width: 3; stroke-linejoin: round; }
+.g-eje { stroke: var(--borde-fuerte); stroke-width: 2; }
+.g-rejilla { stroke: var(--borde); stroke-width: 1; }
+.g-ok { fill: var(--hoja); stroke: var(--superficie); stroke-width: 2; }
+.g-aviso { fill: var(--ocre); stroke: var(--tinta); stroke-width: 2; }
+.g-alerta { fill: var(--arcilla); stroke: var(--superficie); stroke-width: 2; }
+
+.fila-rango { display: grid; grid-template-columns: 170px 84px 84px minmax(0, 1fr); gap: var(--space-3); align-items: center; }
+.fila-rango--cabeza { color: var(--tinta-suave); }
+
+.muestras { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-3); }
+.muestra { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--borde); border-radius: var(--radius-md); background: var(--superficie); }
+.muestra div { height: 56px; background: var(--_c); }
+.muestra span { padding: var(--space-2) var(--space-3); font: 600 14px/18px var(--font-text); }
+.elementos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); align-items: start; }
+.seccion { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radius-lg); min-width: 0; }
+.seccion--ancha { grid-column: 1 / -1; }
+.fila { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.sobre-hoja { display: inline-flex; padding: var(--space-4); background: var(--hoja); border-radius: var(--radius-lg); }
+
+@media (max-width: 640px) {
+  .panel--ancho { grid-template-columns: 1fr; }
+  .contenedor { padding: var(--space-6) var(--space-4); gap: var(--space-6); }
+  .menu { padding: var(--space-3) var(--space-4); }
+  .modulo--protagonista { padding: var(--space-6); }
+  .modulo--formulario .modulo__formulario { padding: var(--space-6) var(--space-4); }
+  .modulo--formulario .modulo__cabecera { padding: var(--space-4); }
+  .resultado { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .centrado { padding: var(--space-6) var(--space-4); min-height: 0; }
+  .fila-rango { grid-template-columns: 1fr 1fr; }
+  .fila-rango > :first-child, .fila-rango > :last-child { grid-column: 1 / -1; }
+  .fila-rango--cabeza { display: none; }
+  .elementos { grid-template-columns: 1fr; }
+  .pie { padding: 0 var(--space-4) var(--space-6); }
+}

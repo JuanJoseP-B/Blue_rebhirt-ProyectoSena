@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="index.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="index.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="registro.html">Crear cuenta</a>
+    </div>
+  </nav>
+
+  <main class="centrado">
+    <form class="acceso" aria-labelledby="e-titulo">
+      <h1 class="titulo-lg" id="e-titulo"><em class="enfasis">Entrar</em></h1>
+      <div class="acceso__form">
+        <div class="campo">
+          <label class="campo__etiqueta" for="e-correo">Correo</label>
+          <input class="campo__input" id="e-correo" type="email" autocomplete="email">
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="e-clave">Contraseña</label>
+          <input class="campo__input" id="e-clave" type="password" autocomplete="current-password">
+        </div>
+      </div>
+      <a class="btn btn--primario btn--completo" href="panel.html">Entrar</a>
+      <div class="acceso__alterno"><a class="btn btn--discreto" href="registro.html">Crear cuenta</a></div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

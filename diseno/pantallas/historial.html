@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Historial · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="panel.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="panel.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="cultivos.html">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="historial.html" aria-current="page">Historial</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+      <a class="btn btn--primario" href="medicion.html">Nueva medición</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="h-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Últimas 8 mediciones</p>
+          <h1 class="titulo-lg" id="h-titulo">pH en el <em class="enfasis">tiempo</em></h1>
+        </div>
+        <div class="modulo__formulario">
+          <div class="campo">
+            <label class="campo__etiqueta" for="h-cultivo">Cultivo</label>
+            <select class="campo__input" id="h-cultivo">
+              <option>Lote La Cumbre 1</option>
+              <option>Lote del río</option>
+            </select>
+          </div>
+          <svg class="grafica" viewBox="0 0 660 310" role="img" aria-label="Gráfica del pH de Lote La Cumbre 1 entre el 12 de octubre y el 7 de noviembre. Bajó a 4.9 el 26 de octubre y volvió a 6.2.">
+            <rect class="g-banda" x="48" y="116" width="592" height="72"/>
+            <line class="g-rejilla" x1="48" y1="20" x2="640" y2="20"/>
+            <line class="g-rejilla" x1="48" y1="68" x2="640" y2="68"/>
+            <line class="g-rejilla" x1="48" y1="116" x2="640" y2="116"/>
+            <line class="g-rejilla" x1="48" y1="164" x2="640" y2="164"/>
+            <line class="g-rejilla" x1="48" y1="212" x2="640" y2="212"/>
+            <line class="g-eje" x1="48" y1="260" x2="640" y2="260"/>
+            <line class="g-eje" x1="48" y1="20" x2="48" y2="260"/>
+            <text class="g-texto" x="40" y="264" text-anchor="end">4</text>
+            <text class="g-texto" x="40" y="216" text-anchor="end">5</text>
+            <text class="g-texto" x="40" y="168" text-anchor="end">6</text>
+            <text class="g-texto" x="40" y="120" text-anchor="end">7</text>
+            <text class="g-texto" x="40" y="72" text-anchor="end">8</text>
+            <text class="g-texto" x="40" y="24" text-anchor="end">9</text>
+            <text class="g-texto" x="636" y="182" text-anchor="end">Ideal 5.5 a 7.0</text>
+            <polyline class="g-linea" points="64,159.2 141,149.6 217,168.8 294,192.8 370,216.8 447,183.2 523,144.8 600,154.4"/>
+            <circle class="g-ok" cx="64" cy="159.2" r="7"/>
+            <circle class="g-ok" cx="141" cy="149.6" r="7"/>
+            <circle class="g-ok" cx="217" cy="168.8" r="7"/>
+            <circle class="g-aviso" cx="294" cy="192.8" r="7"/>
+            <circle class="g-alerta" cx="370" cy="216.8" r="7"/>
+            <circle class="g-ok" cx="447" cy="183.2" r="7"/>
+            <circle class="g-ok" cx="523" cy="144.8" r="7"/>
+            <circle class="g-ok" cx="600" cy="154.4" r="7"/>
+            <text class="g-texto" x="64" y="145" text-anchor="middle">6.1</text>
+            <text class="g-texto" x="141" y="135" text-anchor="middle">6.3</text>
+            <text class="g-texto" x="217" y="155" text-anchor="middle">5.9</text>
+            <text class="g-texto" x="294" y="179" text-anchor="middle">5.4</text>
+            <text class="g-texto" x="370" y="203" text-anchor="middle">4.9</text>
+            <text class="g-texto" x="447" y="169" text-anchor="middle">5.6</text>
+            <text class="g-texto" x="523" y="130" text-anchor="middle">6.4</text>
+            <text class="g-texto" x="600" y="140" text-anchor="middle">6.2</text>
+            <text class="g-texto" x="64" y="284" text-anchor="middle">12 oct</text>
+            <text class="g-texto" x="141" y="284" text-anchor="middle">15 oct</text>
+            <text class="g-texto" x="217" y="284" text-anchor="middle">19 oct</text>
+            <text class="g-texto" x="294" y="284" text-anchor="middle">22 oct</text>
+            <text class="g-texto" x="370" y="284" text-anchor="middle">26 oct</text>
+            <text class="g-texto" x="447" y="284" text-anchor="middle">30 oct</text>
+            <text class="g-texto" x="523" y="284" text-anchor="middle">3 nov</text>
+            <text class="g-texto" x="600" y="284" text-anchor="middle">7 nov</text>
+          </svg>
+          <p class="apoyo">El eje muestra de 4 a 9 para que se vean los cambios. La escala completa del pH va de 0 a 14.</p>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="h-lista">
+        <p class="modulo__etiqueta">Lote La Cumbre 1</p>
+        <h2 class="titulo-md" id="h-lista">Últimas <em class="enfasis">mediciones</em></h2>
+        <ul class="lista">
+          <li><span><strong>7 nov</strong> · 6.2</span><span class="estado estado--ok"><i aria-hidden="true">✓</i> En rango</span></li>
+          <li><span><strong>3 nov</strong> · 6.4</span><span class="estado estado--ok"><i aria-hidden="true">✓</i> En rango</span></li>
+          <li><span><strong>30 oct</strong> · 5.6</span><span class="estado estado--ok"><i aria-hidden="true">✓</i> En rango</span></li>
+          <li><span><strong>26 oct</strong> · 4.9</span><span class="estado estado--alerta"><i aria-hidden="true">▲</i> Fuera de rango</span></li>
+          <li><span><strong>22 oct</strong> · 5.4</span><span class="estado estado--aviso"><i aria-hidden="true">!</i> Revisar</span></li>
+        </ul>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="h-resumen">
+        <p class="modulo__etiqueta">En estas 8 mediciones</p>
+        <h2 class="titulo-md" id="h-resumen"><em class="enfasis">Resumen</em></h2>
+        <p class="cuerpo">El pH promedio fue <strong>5.9</strong>. Dos mediciones salieron del rango ideal.</p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="cultivos.html">Ver mis cultivos</a>
+        <a class="modulo modulo--enlace" href="guia.html">Guía de abonos</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel del administrador · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Administración">
+    <a class="menu__marca" href="admin.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="admin.html" aria-current="page">Panel</a></li>
+      <li><a class="menu__enlace" href="admin.html">Usuarios</a></li>
+      <li><a class="menu__enlace" href="admin.html">Cultivos</a></li>
+      <li><a class="menu__enlace" href="admin.html">Rangos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel panel--ancho">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="a-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Lo que usa el cálculo</p>
+          <h1 class="titulo-lg" id="a-titulo">Rangos y <em class="enfasis">recomendaciones</em></h1>
+        </div>
+        <form class="modulo__formulario">
+          <div class="fila-rango fila-rango--cabeza etiqueta">
+            <span>ESTADO</span><span>DESDE</span><span>HASTA</span><span>RECOMENDACIÓN</span>
+          </div>
+
+          <div class="fila-rango">
+            <span class="estado estado--alerta"><i aria-hidden="true">▲</i> Fuera de rango</span>
+            <input class="campo__input" type="number" step="0.1" value="0" aria-label="Fuera de rango, ácido: desde">
+            <input class="campo__input" type="number" step="0.1" value="4.9" aria-label="Fuera de rango, ácido: hasta">
+            <input class="campo__input" type="text" value="El agua está ácida. Revisa el abono y vuelve a medir mañana." aria-label="Fuera de rango, ácido: recomendación">
+          </div>
+          <div class="fila-rango">
+            <span class="estado estado--aviso"><i aria-hidden="true">!</i> Revisar</span>
+            <input class="campo__input" type="number" step="0.1" value="5.0" aria-label="Revisar, bajo: desde">
+            <input class="campo__input" type="number" step="0.1" value="5.4" aria-label="Revisar, bajo: hasta">
+            <input class="campo__input" type="text" value="Está cerca del límite bajo. Vuelve a medir mañana antes de abonar." aria-label="Revisar, bajo: recomendación">
+          </div>
+          <div class="fila-rango">
+            <span class="estado estado--ok"><i aria-hidden="true">✓</i> En rango</span>
+            <input class="campo__input" type="number" step="0.1" value="5.5" aria-label="En rango: desde">
+            <input class="campo__input" type="number" step="0.1" value="7.0" aria-label="En rango: hasta">
+            <input class="campo__input" type="text" value="El agua está bien. Sigue con tu riego normal." aria-label="En rango: recomendación">
+          </div>
+          <div class="fila-rango">
+            <span class="estado estado--aviso"><i aria-hidden="true">!</i> Revisar</span>
+            <input class="campo__input" type="number" step="0.1" value="7.1" aria-label="Revisar, alto: desde">
+            <input class="campo__input" type="number" step="0.1" value="7.5" aria-label="Revisar, alto: hasta">
+            <input class="campo__input" type="text" value="Está cerca del límite alto. Vuelve a medir mañana." aria-label="Revisar, alto: recomendación">
+          </div>
+          <div class="fila-rango">
+            <span class="estado estado--alerta"><i aria-hidden="true">▲</i> Fuera de rango</span>
+            <input class="campo__input" type="number" step="0.1" value="7.6" aria-label="Fuera de rango, alcalino: desde">
+            <input class="campo__input" type="number" step="0.1" value="14" aria-label="Fuera de rango, alcalino: hasta">
+            <input class="campo__input" type="text" value="El agua es muy alcalina. Revisa el abono y consulta con tu técnico." aria-label="Fuera de rango, alcalino: recomendación">
+          </div>
+
+          <div><a class="btn btn--primario" href="admin.html">Guardar rangos</a></div>
+        </form>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="a-usuarios">
+        <p class="modulo__etiqueta">Cuentas</p>
+        <h2 class="titulo-md" id="a-usuarios"><em class="enfasis">Usuarios</em></h2>
+        <p class="cuerpo-fuerte">4 agricultores y 1 administrador</p>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="a-cultivos">
+        <p class="modulo__etiqueta">Registrados</p>
+        <h2 class="titulo-md" id="a-cultivos"><em class="enfasis">Cultivos</em></h2>
+        <p class="cuerpo-fuerte">6 cultivos</p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="admin.html">Mediciones recientes</a>
+        <a class="modulo modulo--enlace" href="admin.html">Restablecer una contraseña</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

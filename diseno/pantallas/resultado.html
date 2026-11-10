@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultado · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="panel.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="panel.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="cultivos.html">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="historial.html">Historial</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="saludo">
+      <h1 class="titulo-lg">Resultado de tu <em class="enfasis">medición</em></h1>
+      <p class="cuerpo">Lote del río · hoy, 9 de noviembre</p>
+    </div>
+
+    <div class="panel">
+      <article class="resultado resultado--alerta panel__protagonista" style="align-content: start" aria-label="Resultado: pH 4.8, fuera de rango">
+        <div class="resultado__valor">
+          <span class="valor-ph">4.8</span>
+          <span class="resultado__unidad">pH del agua</span>
+        </div>
+        <div class="resultado__texto">
+          <p class="resultado__estado"><span class="resultado__icono" aria-hidden="true">▲</span> Fuera de rango</p>
+          <p class="cuerpo">El agua está ácida. Revisa el abono y vuelve a medir mañana.</p>
+        </div>
+        <div class="resultado__escala">
+          <div class="escala" role="img" aria-label="pH 4.8, en el tramo ácido, en una escala de 0 a 14">
+            <div class="escala__area">
+              <div class="escala__marca" style="left: 34.29%">4.8</div>
+              <div class="escala__barra">
+                <div class="escala__tramo--acido"></div>
+                <div class="escala__tramo--ideal"></div>
+                <div class="escala__tramo--alcalino"></div>
+              </div>
+            </div>
+            <div class="escala__numeros">
+              <span style="left: 0">0</span>
+              <span style="left: 39.29%">5.5</span>
+              <span style="left: 50%">7</span>
+              <span style="left: 100%">14</span>
+            </div>
+            <div class="escala__leyenda">
+              <span style="--_c: var(--arcilla)"><i></i>Ácido: menos de 5.5</span>
+              <span style="--_c: var(--hoja)"><i></i>Ideal: de 5.5 a 7.0</span>
+              <span style="--_c: var(--ocre)"><i></i>Alcalino: más de 7.0</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="r-hacer">
+        <p class="modulo__etiqueta">Ahora</p>
+        <h2 class="titulo-md" id="r-hacer">Qué <em class="enfasis">hacer</em></h2>
+        <ol class="pasos">
+          <li class="cuerpo">Revisa el abono que estás usando.</li>
+          <li class="cuerpo">Vuelve a medir mañana a la misma hora.</li>
+          <li class="cuerpo">Si sigue por debajo de 5.5, consulta con tu técnico.</li>
+        </ol>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="r-datos">
+        <p class="modulo__etiqueta">Guardada en tu historial</p>
+        <h2 class="titulo-md" id="r-datos">Datos de esta <em class="enfasis">medición</em></h2>
+        <ul class="lista">
+          <li><span>Nivel de agua</span><strong>18 cm</strong></li>
+          <li><span>Humedad del suelo</span><strong>62 %</strong></li>
+          <li><span>Temperatura</span><strong>24 °C</strong></li>
+        </ul>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Siguientes pasos">
+        <a class="modulo modulo--enlace" href="medicion.html">Hacer otra medición</a>
+        <a class="modulo modulo--enlace" href="historial.html">Ver historial</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

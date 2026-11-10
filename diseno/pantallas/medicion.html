@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nueva medición · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="panel.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="panel.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="cultivos.html">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="historial.html">Historial</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="m-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Datos de hoy</p>
+          <h1 class="titulo-lg" id="m-titulo">Nueva <em class="enfasis">medición</em></h1>
+        </div>
+        <form class="modulo__formulario">
+          <div class="campo">
+            <label class="campo__etiqueta" for="m-cultivo">Cultivo</label>
+            <select class="campo__input" id="m-cultivo">
+              <option>Lote del río</option>
+              <option>Lote La Cumbre 1</option>
+            </select>
+          </div>
+
+          <div class="grid-2">
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-ph">pH del agua</label>
+              <div class="campo__control campo__control--unidad">
+                <input class="campo__input" id="m-ph" type="number" step="0.1" value="4.8">
+                <span class="campo__unidad">pH</span>
+              </div>
+              <p class="campo__ayuda">Un número entre 0 y 14.</p>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-nivel">Nivel de agua</label>
+              <div class="campo__control campo__control--unidad">
+                <input class="campo__input" id="m-nivel" type="number" value="18">
+                <span class="campo__unidad">cm</span>
+              </div>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-humedad">Humedad del suelo</label>
+              <div class="campo__control campo__control--unidad">
+                <input class="campo__input" id="m-humedad" type="number" value="62">
+                <span class="campo__unidad">%</span>
+              </div>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-temp">Temperatura</label>
+              <div class="campo__control campo__control--unidad">
+                <input class="campo__input" id="m-temp" type="number" value="24">
+                <span class="campo__unidad">°C</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="titulo-md">Cuéntanos de <em class="enfasis">tu cultivo</em></h2>
+          <div class="grupo">
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-hojas">¿Cómo se ven las hojas?</label>
+              <select class="campo__input" id="m-hojas">
+                <option>Verdes y firmes</option>
+                <option>Amarillas</option>
+                <option>Con manchas</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-abono">¿Cuándo abonaste por última vez?</label>
+              <select class="campo__input" id="m-abono">
+                <option>Hace menos de 2 semanas</option>
+                <option>Hace 2 a 4 semanas</option>
+                <option>Hace más de un mes</option>
+                <option>Todavía no he abonado</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" for="m-lluvia">¿Llovió en los últimos 3 días?</label>
+              <select class="campo__input" id="m-lluvia">
+                <option>No</option>
+                <option>Sí</option>
+              </select>
+            </div>
+          </div>
+
+          <div><a class="btn btn--primario" href="resultado.html">Calcular</a></div>
+        </form>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="m-ayuda">
+        <p class="modulo__etiqueta">Antes de medir</p>
+        <h2 class="titulo-md" id="m-ayuda">Cómo <em class="enfasis">medir bien</em></h2>
+        <ol class="pasos">
+          <li class="cuerpo">Mide con el agua en reposo.</li>
+          <li class="cuerpo">Enjuaga el sensor con agua limpia antes y después.</li>
+          <li class="cuerpo">Calibra el sensor con sus soluciones de calibración cada cierto tiempo.</li>
+        </ol>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

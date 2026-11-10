@@ -1,0 +1,47 @@
+﻿/* Blue Rebhirt — generated from tokens.json */
+:root, [data-theme="light"] {
+  --fondo: #f4f0e6;
+  --superficie: #fbf9f3;
+  --hundido: #e9e2d0;
+  --borde: #d6cdb6;
+  --borde-fuerte: #8a8068;
+  --tinta: #2c2820;
+  --tinta-suave: #6a6352;
+  --hoja: #4a6b2f;
+  --hoja-oscuro: #3a5524;
+  --hoja-suave: #dfe8cf;
+  --arcilla: #a24f2b;
+  --arcilla-suave: #f2ddd0;
+  --ocre: #c58f2a;
+  --ocre-suave: #f4e4bd;
+  --agua: #2f6f8f;
+  --agua-suave: #d8e8ee;
+  --sobre-color: #ffffff;
+  --foco: var(--agua);
+  --sombra-suave: 0 1px 2px rgba(60, 45, 20, 0.10), 0 8px 20px rgba(60, 45, 20, 0.08);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --alto-control: 48px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-text: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+.titulo-xl { font-family: var(--font-display); font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: 0; }
+.titulo-lg { font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: 0; }
+.titulo-md { font-family: var(--font-display); font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: 0; }
+.valor-ph { font-family: var(--font-display); font-size: 64px; line-height: 64px; font-weight: 800; }
+.cuerpo { font-family: var(--font-text); font-size: 17px; line-height: 26px; font-weight: 400; }
+.cuerpo-fuerte { font-family: var(--font-text); font-size: 17px; line-height: 26px; font-weight: 600; }
+.apoyo { font-family: var(--font-text); font-size: 15px; line-height: 22px; font-weight: 400; }
+.etiqueta { font-family: var(--font-text); font-size: 14px; line-height: 18px; font-weight: 700; letter-spacing: 0.04em; }
+

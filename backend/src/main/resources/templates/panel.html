@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="|Inicio del agricultor · ${nombreApp}|">Inicio del agricultor · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="/inicio"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="/inicio" aria-current="page">Inicio</a></li>
+      <li><a class="menu__enlace" href="/cultivos">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="/historial">Historial</a></li>
+      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <form method="post" th:action="@{/salir}"><button class="btn btn--discreto" type="submit">Salir</button></form>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="saludo">
+      <h1 class="titulo-lg">Hola, <em class="enfasis" th:text="${nombre}">Ana</em></h1>
+      <p class="cuerpo"><span th:text="|Hoy es ${fecha}.|">Hoy</span></p>
+    </div>
+
+    <div class="panel">
+      <section class="modulo modulo--protagonista panel__protagonista hero" aria-labelledby="p-nueva">
+        <svg class="arbol" viewBox="0 0 300 260" aria-hidden="true">
+          <g class="arbol__ramas">
+            <path class="tronco" d="M150 260 C150 215 146 185 150 150" style="--d:0s"/>
+            <path d="M148 195 C120 180 100 165 78 140" style="--d:.5s"/>
+            <path d="M100 165 C88 160 70 160 56 168" style="--d:.9s"/>
+            <path d="M150 175 C176 160 200 145 224 118" style="--d:.6s"/>
+            <path d="M200 145 C214 146 236 150 248 164" style="--d:1s"/>
+            <path d="M150 150 C152 125 150 100 156 72" style="--d:.8s"/>
+            <path d="M152 120 C138 106 124 96 112 80" style="--d:1.2s"/>
+            <path d="M153 105 C168 92 178 84 190 66" style="--d:1.3s"/>
+          </g>
+          <g class="arbol__hojas">
+            <g transform="translate(78 140) rotate(-160)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.2s"/></g>
+            <g transform="translate(78 140) rotate(-110)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.1s"/></g>
+            <g transform="translate(56 168) rotate(180)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.7s"/></g>
+            <g transform="translate(56 168) rotate(140)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.6s"/></g>
+            <g transform="translate(112 80) rotate(-140)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.4s"/></g>
+            <g transform="translate(112 80) rotate(-80)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.4s"/></g>
+            <g transform="translate(124 96) rotate(-175)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.9s"/></g>
+            <g transform="translate(156 72) rotate(-110)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.9s"/></g>
+            <g transform="translate(156 72) rotate(-60)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.3s"/></g>
+            <g transform="translate(190 66) rotate(-55)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.2s"/></g>
+            <g transform="translate(190 66) rotate(-10)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.6s"/></g>
+            <g transform="translate(224 118) rotate(-35)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.7s"/></g>
+            <g transform="translate(224 118) rotate(20)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.1s"/></g>
+            <g transform="translate(248 164) rotate(5)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1s"/></g>
+            <g transform="translate(248 164) rotate(50)"><path class="hoja-p hoja-b" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:.5s"/></g>
+            <g transform="translate(176 150) rotate(-20)"><path class="hoja-p hoja-a" d="M0 0Q12 -12 26 0Q12 12 0 0Z" style="--d:1.5s"/></g>
+          </g>
+          <g class="arbol__flores">
+            <g transform="translate(92 126)"><g class="flor" style="--d:2.2s;--t:7.5s"><circle class="petalo" cx="0" cy="-6" r="4.5"/><circle class="petalo" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+            <g transform="translate(132 66)"><g class="flor" style="--d:3.4s;--t:8.5s"><circle class="petalo petalo--arcilla" cx="0" cy="-6" r="4.5"/><circle class="petalo petalo--arcilla" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+            <g transform="translate(176 50)"><g class="flor" style="--d:4.6s;--t:7s"><circle class="petalo" cx="0" cy="-6" r="4.5"/><circle class="petalo" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+            <g transform="translate(206 96)"><g class="flor" style="--d:3s;--t:9s"><circle class="petalo petalo--arcilla" cx="0" cy="-6" r="4.5"/><circle class="petalo petalo--arcilla" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+            <g transform="translate(240 140)"><g class="flor" style="--d:5.2s;--t:8s"><circle class="petalo" cx="0" cy="-6" r="4.5"/><circle class="petalo" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+            <g transform="translate(62 158)"><g class="flor" style="--d:4s;--t:9.5s"><circle class="petalo petalo--arcilla" cx="0" cy="-6" r="4.5"/><circle class="petalo petalo--arcilla" cx="5.7" cy="-1.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-3.5" cy="4.9" r="4.5"/><circle class="petalo petalo--arcilla" cx="-5.7" cy="-1.9" r="4.5"/><circle class="centro" r="3"/></g></g>
+          </g>
+        </svg>
+        <div class="modulo__cuerpo">
+          <p class="modulo__etiqueta">Empieza aquí</p>
+          <h2 class="titulo-lg" id="p-nueva" th:if="${cultivos == 0}">Crea tu primer <em class="enfasis">cultivo</em></h2><h2 class="titulo-lg" th:unless="${cultivos == 0}">Nueva <em class="enfasis">medición</em></h2>
+          <p class="cuerpo">Escribe el pH y los datos de hoy. Te decimos si el agua está bien para tus plataneras.</p>
+        </div>
+        <div><a class="btn btn--inverso" th:href="${cultivos == 0} ? @{/cultivos} : @{/mediciones/nueva}">Empezar</a></div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="p-ultima">
+        
+        <h2 class="titulo-md" id="p-ultima">Última <em class="enfasis">medición</em></h2>
+        <p class="apoyo" th:if="${ultima == null}">Todavía no has medido.</p><p th:if="${ultima != null}" class="estado" th:classappend="|estado--${ultima.estado}|"><i aria-hidden="true" th:text="${ultima.estado == 'ok' ? '✓' : (ultima.estado == 'aviso' ? '!' : '▲')}"></i><span th:text="|pH ${ultima.ph} · ${ultima.estado == 'ok' ? 'En rango' : (ultima.estado == 'aviso' ? 'Revisar' : 'Fuera de rango')}|"></span></p><a class="apoyo" th:if="${ultima != null}" th:href="@{/mediciones/{id}(id=${ultima.id})}" th:text="${ultima.cultivo}"></a>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="p-cultivos">
+        <p class="modulo__etiqueta">Tus lotes</p>
+        <h2 class="titulo-md" id="p-cultivos">Mis <em class="enfasis">cultivos</em></h2>
+        <p class="cuerpo-fuerte"><span th:text="|${cultivos} cultivos registrados|">0 cultivos registrados</span></p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="/historial">Historial</a>
+        <a class="modulo modulo--enlace" href="/guia">Guía de abonos</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

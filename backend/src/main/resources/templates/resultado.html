@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="|Resultado · ${nombreApp}|">Resultado · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="/inicio"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="/inicio">Inicio</a></li>
+      <li><a class="menu__enlace" href="/cultivos">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="/historial">Historial</a></li>
+      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <form method="post" th:action="@{/salir}"><button class="btn btn--discreto" type="submit">Salir</button></form>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="saludo">
+      <h1 class="titulo-lg">Resultado de tu <em class="enfasis">medición</em></h1>
+      <p class="cuerpo"><span th:text="${medicion.cultivo}">Cultivo</span></p>
+    </div>
+
+    <div class="panel">
+      <article class="resultado panel__protagonista" th:classappend="|resultado--${medicion.estado}|" style="align-content: start" th:attr="aria-label=|Resultado: pH ${medicion.ph}|">
+        <div class="resultado__valor">
+          <span class="valor-ph" th:text="${medicion.ph}">4.8</span>
+          <span class="resultado__unidad">pH del agua</span>
+        </div>
+        <div class="resultado__texto">
+          <p class="resultado__estado"><span class="resultado__icono" aria-hidden="true" th:text="${medicion.estado == 'ok' ? '✓' : (medicion.estado == 'aviso' ? '!' : '▲')}">▲</span> <span th:text="${medicion.estado == 'ok' ? 'En rango' : (medicion.estado == 'aviso' ? 'Revisar' : 'Fuera de rango')}">Fuera de rango</span></p>
+          <p class="cuerpo" th:text="${medicion.recomendacion}"></p>
+        </div>
+        <div class="resultado__escala">
+          <div class="escala" role="img" th:attr="aria-label=|pH ${medicion.ph} en una escala de 0 a 14|">
+            <div class="escala__area">
+              <div class="escala__marca" th:style="|left: ${marca}%|" th:text="${medicion.ph}">4.8</div>
+              <div class="escala__barra">
+                <div class="escala__tramo--acido" th:style="|width: ${inicioIdeal}%|"></div>
+                <div class="escala__tramo--ideal" th:style="|width: ${finIdeal - inicioIdeal}%|"></div>
+                <div class="escala__tramo--alcalino" th:style="|width: ${100 - finIdeal}%|"></div>
+              </div>
+            </div>
+            <div class="escala__numeros">
+              <span style="left: 0">0</span>
+              <span th:style="|left: ${inicioIdeal}%|" th:text="${ideal.ph_desde}">5.5</span>
+              <span th:style="|left: ${finIdeal}%|" th:text="${ideal.ph_hasta}">7</span>
+              <span style="left: 100%">14</span>
+            </div>
+            <div class="escala__leyenda">
+              <span style="--_c: var(--arcilla)"><i></i><span th:text="|Ácido: menos de ${ideal.ph_desde}|"></span></span>
+              <span style="--_c: var(--hoja)"><i></i><span th:text="|Ideal: de ${ideal.ph_desde} a ${ideal.ph_hasta}|"></span></span>
+              <span style="--_c: var(--ocre)"><i></i><span th:text="|Alcalino: más de ${ideal.ph_hasta}|"></span></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="r-hacer">
+        <p class="modulo__etiqueta">Ahora</p>
+        <h2 class="titulo-md" id="r-hacer">Qué <em class="enfasis">hacer</em></h2>
+        <ol class="pasos">
+          <li class="cuerpo" th:each="paso : ${pasos}" th:text="${paso}"></li>
+        </ol>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="r-datos">
+        <p class="modulo__etiqueta">Guardada en tu historial</p>
+        <h2 class="titulo-md" id="r-datos">Datos de esta <em class="enfasis">medición</em></h2>
+        <ul class="lista">
+          <li><span>Nivel de agua</span><strong th:text="|${medicion.nivel_agua_cm} cm|">18 cm</strong></li>
+          <li><span>Humedad del suelo</span><strong th:text="|${medicion.humedad_pct} %|">62 %</strong></li>
+          <li><span>Temperatura</span><strong th:text="|${medicion.temperatura_c} °C|">24 °C</strong></li>
+        </ul>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Siguientes pasos">
+        <a class="modulo modulo--enlace" href="/mediciones/nueva">Hacer otra medición</a>
+        <a class="modulo modulo--enlace" href="/historial">Ver historial</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

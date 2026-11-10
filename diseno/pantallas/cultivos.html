@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis cultivos · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="panel.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="panel.html">Inicio</a></li>
+      <li><a class="menu__enlace" href="cultivos.html" aria-current="page">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="historial.html">Historial</a></li>
+      <li><a class="menu__enlace" href="guia.html">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="index.html">Salir</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="c-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Tu platanera</p>
+          <h1 class="titulo-lg" id="c-titulo">Agregar un <em class="enfasis">cultivo</em></h1>
+        </div>
+        <form class="modulo__formulario">
+          <div class="campo">
+            <label class="campo__etiqueta" for="c-nombre">Nombre del cultivo</label>
+            <input class="campo__input" id="c-nombre" type="text" value="Lote de la loma">
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="c-lugar">Dónde queda</label>
+            <input class="campo__input" id="c-lugar" type="text" value="Vereda Bella Vista">
+            <p class="campo__ayuda">Una referencia para reconocer el lote.</p>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="c-fecha">Fecha de siembra</label>
+            <input class="campo__input" id="c-fecha" type="date" value="2026-03-12">
+          </div>
+          <div><a class="btn btn--primario" href="cultivos.html">Guardar cultivo</a></div>
+        </form>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="c-a1">
+        <p class="modulo__etiqueta">Plátano · sembrado el 12 de marzo</p>
+        <h2 class="titulo-md" id="c-a1">Lote La Cumbre 1</h2>
+        <p class="estado estado--ok"><i aria-hidden="true">✓</i> pH 6.2 · En rango</p>
+        <p class="apoyo">Última medición hace 2 días</p>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="c-a2">
+        <p class="modulo__etiqueta">Plátano · sembrado el 3 de abril</p>
+        <h2 class="titulo-md" id="c-a2">Lote del río</h2>
+        <p class="estado estado--alerta"><i aria-hidden="true">▲</i> pH 4.8 · Fuera de rango</p>
+        <p class="apoyo">Última medición hoy</p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="historial.html">Ver historial</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

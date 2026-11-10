@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="|Historial · ${nombreApp}|">Historial · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="/inicio"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="/inicio">Inicio</a></li>
+      <li><a class="menu__enlace" href="/cultivos">Mis cultivos</a></li>
+      <li><a class="menu__enlace" href="/historial" aria-current="page">Historial</a></li>
+      <li><a class="menu__enlace" href="/guia">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <form method="post" th:action="@{/salir}"><button class="btn btn--discreto" type="submit">Salir</button></form>
+      <a class="btn btn--primario" href="medicion.html">Nueva medición</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="h-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Últimas 8 mediciones</p>
+          <h1 class="titulo-lg" id="h-titulo">pH en el <em class="enfasis">tiempo</em></h1>
+        </div>
+        <div class="modulo__formulario">
+          <form method="get" action="/historial" class="campo"><label class="campo__etiqueta" for="h-cultivo">Cultivo</label><select class="campo__input" id="h-cultivo" name="cultivo"><option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}" th:text="${cultivo.nombre}" th:selected="${cultivo.id == seleccionado}"></option></select><button class="btn btn--secundario" type="submit">Ver</button></form><p class="apoyo" th:if="${#lists.isEmpty(puntos)}">Este cultivo todavía no tiene mediciones.</p>
+          <svg th:if="${!#lists.isEmpty(puntos)}" class="grafica" viewBox="0 0 660 310" role="img" aria-label="Gráfica del pH de las últimas mediciones">
+            <rect class="g-banda" x="48" th:attr="y=${bandaY},height=${bandaAlto}" width="592"/>
+            <line class="g-rejilla" x1="48" y1="20" x2="640" y2="20"/>
+            <line class="g-rejilla" x1="48" y1="68" x2="640" y2="68"/>
+            <line class="g-rejilla" x1="48" y1="116" x2="640" y2="116"/>
+            <line class="g-rejilla" x1="48" y1="164" x2="640" y2="164"/>
+            <line class="g-rejilla" x1="48" y1="212" x2="640" y2="212"/>
+            <line class="g-eje" x1="48" y1="260" x2="640" y2="260"/>
+            <line class="g-eje" x1="48" y1="20" x2="48" y2="260"/>
+            <text class="g-texto" x="40" y="264" text-anchor="end">4</text>
+            <text class="g-texto" x="40" y="216" text-anchor="end">5</text>
+            <text class="g-texto" x="40" y="168" text-anchor="end">6</text>
+            <text class="g-texto" x="40" y="120" text-anchor="end">7</text>
+            <text class="g-texto" x="40" y="72" text-anchor="end">8</text>
+            <text class="g-texto" x="40" y="24" text-anchor="end">9</text>
+            <text class="g-texto" x="636" y="182" text-anchor="end" th:text="|Ideal ${ideal.ph_desde} a ${ideal.ph_hasta}|"></text><polyline class="g-linea" th:attr="points=${linea}"/><circle th:each="p : ${puntos}" th:attr="cx=${p.x},cy=${p.y}" th:class="|g-${p.estado}|" r="7"/><text th:each="p : ${puntos}" class="g-texto" th:attr="x=${p.x},y=${p.y - 14}" text-anchor="middle" th:text="${p.ph}"></text><text th:each="p : ${puntos}" class="g-texto" th:attr="x=${p.x}" y="284" text-anchor="middle" th:text="${p.fecha}"></text>
+          </svg>
+          <p class="apoyo">El eje muestra de 4 a 9 para que se vean los cambios. La escala completa del pH va de 0 a 14.</p>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="h-lista">
+        <p class="modulo__etiqueta">Tus mediciones</p><h2 class="titulo-md" id="h-lista">Últimas <em class="enfasis">mediciones</em></h2><ul class="lista"><li th:each="p : ${puntos}"><a th:href="@{/mediciones/{id}(id=${p.id})}" th:text="|${p.fecha} · ${p.ph}|"></a><span class="estado" th:classappend="|estado--${p.estado}|"><i aria-hidden="true" th:text="${p.estado == 'ok' ? '✓' : (p.estado == 'aviso' ? '!' : '▲')}"></i><span th:text="${p.estado == 'ok' ? 'En rango' : (p.estado == 'aviso' ? 'Revisar' : 'Fuera de rango')}"></span></span></li></ul></section><section class="modulo modulo--apoyo" aria-labelledby="h-resumen"><p class="modulo__etiqueta">En estas mediciones</p><h2 class="titulo-md" id="h-resumen"><em class="enfasis">Resumen</em></h2><p class="cuerpo" th:if="${promedio != null}" th:text="|El pH promedio fue ${promedio}. ${fuera} mediciones salieron del rango ideal.|"></p><p class="cuerpo" th:if="${promedio == null}">Todavía no hay mediciones.</p></section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="/cultivos">Ver mis cultivos</a>
+        <a class="modulo modulo--enlace" href="/guia">Guía de abonos</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

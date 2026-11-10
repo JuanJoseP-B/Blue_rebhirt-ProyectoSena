@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="|Guía de abonos · ${nombreApp}|">Guía de abonos · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <nav class="menu" aria-label="Principal">
+    <a class="menu__marca" href="/"><img class="menu__logo" src="/img/logo-emblema.png" alt=""><span th:text="${nombreApp}">Blue Rebhirt</span></a>
+    <ul class="menu__lista">
+      <li><a class="menu__enlace" href="/">Inicio</a></li>
+      <li sec:authorize="hasRole('AGRICULTOR')"><a class="menu__enlace" href="/cultivos">Mis cultivos</a></li>
+      <li sec:authorize="hasRole('AGRICULTOR')"><a class="menu__enlace" href="/historial">Historial</a></li>
+      <li><a class="menu__enlace" href="/guia" aria-current="page">Guía de abonos</a></li>
+    </ul>
+    <div class="menu__acciones">
+      <a class="btn btn--discreto" href="/entrar" sec:authorize="isAnonymous()">Entrar</a><form method="post" th:action="@{/salir}" sec:authorize="isAuthenticated()"><button class="btn btn--discreto" type="submit">Salir</button></form>
+      <a class="btn btn--primario" href="/mediciones/nueva" sec:authorize="hasRole('AGRICULTOR')">Nueva medición</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+    <div class="panel">
+      <section class="modulo modulo--formulario panel__protagonista" aria-labelledby="g-titulo">
+        <div class="modulo__cabecera">
+          <p class="modulo__etiqueta">Según el pH del agua</p>
+          <h1 class="titulo-lg" id="g-titulo">Qué hacer con el <em class="enfasis">abono</em></h1>
+        </div>
+        <div class="modulo__formulario">
+          <div class="grupo" th:each="rango : ${rangos}"><p class="estado" th:classappend="${rango.zona == 'ideal' ? 'estado--ok' : (rango.zona == 'acido' ? 'estado--alerta' : 'estado--aviso')}"><i aria-hidden="true" th:text="${rango.zona == 'ideal' ? '✓' : (rango.zona == 'acido' ? '▲' : '!')}"></i> <span th:text="${rango.zona == 'ideal' ? 'Ideal' : (rango.zona == 'acido' ? 'Ácido' : 'Alcalino')}"></span></p><p class="cuerpo" th:text="${rango.recomendacion}"></p></div>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="g-escala">
+        <p class="modulo__etiqueta">De 0 a 14</p>
+        <h2 class="titulo-md" id="g-escala">Escala del <em class="enfasis">pH</em></h2>
+        <div class="escala" role="img" th:attr="aria-label=|Escala del pH de 0 a 14, rango ideal de ${ideal.ph_desde} a ${ideal.ph_hasta}|">
+          <div class="escala__area">
+            <div class="escala__barra">
+              <div class="escala__tramo--acido" th:style="|width: ${inicioIdeal}%|"></div>
+              <div class="escala__tramo--ideal" th:style="|width: ${finIdeal - inicioIdeal}%|"></div>
+              <div class="escala__tramo--alcalino" th:style="|width: ${100 - finIdeal}%|"></div>
+            </div>
+          </div>
+          <div class="escala__numeros">
+            <span style="left: 0">0</span>
+            <span th:style="|left: ${inicioIdeal}%|" th:text="${ideal.ph_desde}">5.5</span>
+            <span th:style="|left: ${finIdeal}%|" th:text="${ideal.ph_hasta}">7</span>
+            <span style="left: 100%">14</span>
+          </div>
+          <div class="escala__leyenda">
+            <span style="--_c: var(--arcilla)"><i></i>Ácido</span>
+            <span style="--_c: var(--hoja)"><i></i>Ideal</span>
+            <span style="--_c: var(--ocre)"><i></i>Alcalino</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="modulo modulo--apoyo" aria-labelledby="g-leer">
+        <p class="modulo__etiqueta">Para entender el número</p>
+        <h2 class="titulo-md" id="g-leer">Cómo leer el <em class="enfasis">pH</em></h2>
+        <ul class="lista">
+          <li><span>Menos de 7</span><strong>Ácido</strong></li>
+          <li><span>Igual a 7</span><strong>Neutro</strong></li>
+          <li><span>Más de 7</span><strong>Alcalino</strong></li>
+        </ul>
+        <p class="apoyo">El agua pura a 25 °C marca 7.</p>
+      </section>
+
+      <nav class="panel__enlaces" aria-label="Más opciones">
+        <a class="modulo modulo--enlace" href="/">Volver al inicio</a>
+      </nav>
+    </div>
+  </main>
+</div>
+</body>
+</html>

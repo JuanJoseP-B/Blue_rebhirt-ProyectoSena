@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elementos del sistema · Blue Rebhirt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/componentes.css">
+<link rel="stylesheet" href="../css/pantallas.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="pagina">
+  <main class="contenedor">
+    <div class="saludo">
+      <h1 class="titulo-xl">Elementos de <em class="enfasis">Blue Rebhirt</em></h1>
+      <p class="cuerpo">Todo lo que se repite en las pantallas, en un solo lugar.</p>
+    </div>
+
+    <div class="elementos">
+      <section class="seccion seccion--ancha" aria-labelledby="el-color">
+        <h2 class="titulo-md" id="el-color">Colores de tierra</h2>
+        <div class="muestras">
+          <div class="muestra" style="--_c: var(--fondo)"><div></div><span>fondo</span></div>
+          <div class="muestra" style="--_c: var(--superficie)"><div></div><span>superficie</span></div>
+          <div class="muestra" style="--_c: var(--hundido)"><div></div><span>hundido</span></div>
+          <div class="muestra" style="--_c: var(--tinta)"><div></div><span>tinta</span></div>
+          <div class="muestra" style="--_c: var(--hoja)"><div></div><span>hoja</span></div>
+          <div class="muestra" style="--_c: var(--hoja-suave)"><div></div><span>hoja-suave</span></div>
+          <div class="muestra" style="--_c: var(--arcilla)"><div></div><span>arcilla</span></div>
+          <div class="muestra" style="--_c: var(--ocre)"><div></div><span>ocre</span></div>
+          <div class="muestra" style="--_c: var(--agua)"><div></div><span>agua</span></div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-tipo">
+        <h2 class="titulo-md" id="el-tipo">Dos tipografías</h2>
+        <p class="apoyo">Fraunces normal y cursiva para títulos y cifras</p>
+        <p class="titulo-xl">Mide el pH del agua</p>
+        <p class="titulo-lg" style="font-style:italic">Fraunces cursiva</p>
+        <p class="apoyo">Source Sans 3 para todo el texto</p>
+        <p class="cuerpo">Escribe el pH y los datos de hoy. Te decimos si el agua está bien para tus plataneras.</p>
+        <p class="apoyo">Mide con el agua en reposo.</p>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-botones">
+        <h2 class="titulo-md" id="el-botones">Botones</h2>
+        <div class="fila">
+          <a class="btn btn--primario" href="elementos.html">Nueva medición</a>
+          <a class="btn btn--secundario" href="elementos.html">Hacer otra medición</a>
+          <a class="btn btn--discreto" href="elementos.html">Crear cuenta</a>
+        </div>
+        <div class="sobre-hoja"><a class="btn btn--inverso" href="elementos.html">Empezar</a></div>
+        <p class="apoyo">Un solo botón primario por pantalla. Sobre el verde se usa el botón inverso.</p>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-campos">
+        <h2 class="titulo-md" id="el-campos">Campos</h2>
+        <div class="campo">
+          <label class="campo__etiqueta" for="el-correo">Correo</label>
+          <input class="campo__input" id="el-correo" type="email" placeholder="nombre@correo.com">
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="el-ph">pH del agua</label>
+          <div class="campo__control campo__control--unidad">
+            <input class="campo__input" id="el-ph" type="number" step="0.1" value="6.2">
+            <span class="campo__unidad">pH</span>
+          </div>
+          <p class="campo__ayuda">Un número entre 0 y 14.</p>
+        </div>
+        <div class="campo campo--error">
+          <label class="campo__etiqueta" for="el-hum">Humedad del suelo</label>
+          <div class="campo__control campo__control--unidad">
+            <input class="campo__input" id="el-hum" type="number" value="140">
+            <span class="campo__unidad">%</span>
+          </div>
+          <p class="campo__error"><span aria-hidden="true">▲</span> Escribe un valor entre 0 y 100.</p>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-resultados">
+        <h2 class="titulo-md" id="el-resultados">Resultados del pH</h2>
+        <article class="resultado resultado--ok">
+          <div class="resultado__valor"><span class="valor-ph">6.2</span><span class="resultado__unidad">pH del agua</span></div>
+          <div class="resultado__texto">
+            <p class="resultado__estado"><span class="resultado__icono" aria-hidden="true">✓</span> En rango</p>
+            <p class="cuerpo">El agua está bien. Sigue con tu riego normal.</p>
+          </div>
+        </article>
+        <article class="resultado resultado--aviso">
+          <div class="resultado__valor"><span class="valor-ph">5.4</span><span class="resultado__unidad">pH del agua</span></div>
+          <div class="resultado__texto">
+            <p class="resultado__estado"><span class="resultado__icono" aria-hidden="true">!</span> Revisar</p>
+            <p class="cuerpo">Está cerca del límite bajo. Vuelve a medir mañana.</p>
+          </div>
+        </article>
+        <article class="resultado resultado--alerta">
+          <div class="resultado__valor"><span class="valor-ph">4.8</span><span class="resultado__unidad">pH del agua</span></div>
+          <div class="resultado__texto">
+            <p class="resultado__estado"><span class="resultado__icono" aria-hidden="true">▲</span> Fuera de rango</p>
+            <p class="cuerpo">El agua está ácida. Revisa el abono y vuelve a medir mañana.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-escala">
+        <h2 class="titulo-md" id="el-escala">Escala del pH</h2>
+        <div class="escala" role="img" aria-label="pH 6.2, en el tramo ideal, en una escala de 0 a 14">
+          <div class="escala__area">
+            <div class="escala__marca" style="left: 44.29%">6.2</div>
+            <div class="escala__barra">
+              <div class="escala__tramo--acido"></div>
+              <div class="escala__tramo--ideal"></div>
+              <div class="escala__tramo--alcalino"></div>
+            </div>
+          </div>
+          <div class="escala__numeros">
+            <span style="left: 0">0</span>
+            <span style="left: 39.29%">5.5</span>
+            <span style="left: 50%">7</span>
+            <span style="left: 100%">14</span>
+          </div>
+          <div class="escala__leyenda">
+            <span style="--_c: var(--arcilla)"><i></i>Ácido</span>
+            <span style="--_c: var(--hoja)"><i></i>Ideal</span>
+            <span style="--_c: var(--ocre)"><i></i>Alcalino</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="el-modulos">
+        <h2 class="titulo-md" id="el-modulos">Tres niveles de módulo</h2>
+        <div class="modulo modulo--protagonista" style="min-height: 0">
+          <p class="modulo__etiqueta">Nivel 1 · Protagonista</p>
+          <h3 class="titulo-lg">Nueva medición</h3>
+        </div>
+        <div class="modulo modulo--apoyo">
+          <p class="modulo__etiqueta">Nivel 2 · Apoyo</p>
+          <h3 class="titulo-md">Última medición</h3>
+        </div>
+        <a class="modulo modulo--enlace" href="elementos.html">Nivel 3 · Enlace</a>
+      </section>
+
+      <section class="seccion seccion--ancha" aria-labelledby="el-logo">
+        <h2 class="titulo-md" id="el-logo">Logo</h2>
+        <div class="fila" style="gap: 32px; align-items: flex-end">
+          <img class="logo-completo" src="../assets/logo-completo.png" alt="Logo completo de Blue Rebirth Healthy Crops">
+          <img class="menu__logo" style="width: 96px; height: 96px" src="../assets/logo-emblema.png" alt="Emblema del logo">
+          <p class="apoyo" style="max-width: 360px">El logo completo va en el inicio. El emblema va en el menú, a 40 px. Los dos van solo sobre fondos claros.</p>
+        </div>
+      </section>
+
+      <section class="seccion seccion--ancha" aria-labelledby="el-menu">
+        <h2 class="titulo-md" id="el-menu">Menú</h2>
+        <nav class="menu" aria-label="Ejemplo de menú">
+          <a class="menu__marca" href="elementos.html"><img class="menu__logo" src="../assets/logo-emblema.png" alt=""><span>Blue Rebhirt</span></a>
+          <ul class="menu__lista">
+            <li><a class="menu__enlace" href="elementos.html" aria-current="page">Inicio</a></li>
+            <li><a class="menu__enlace" href="elementos.html">Mis cultivos</a></li>
+            <li><a class="menu__enlace" href="elementos.html">Historial</a></li>
+            <li><a class="menu__enlace" href="elementos.html">Guía de abonos</a></li>
+          </ul>
+          <div class="menu__acciones">
+            <a class="btn btn--discreto" href="elementos.html">Salir</a>
+            <a class="btn btn--primario" href="elementos.html">Nueva medición</a>
+          </div>
+        </nav>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>
